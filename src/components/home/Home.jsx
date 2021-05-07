@@ -4,16 +4,18 @@ import RBCarousel from 'react-bootstrap-carousel'
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
+import { Pagination } from 'react-bootstrap'
 
 export function Home() {
-
+/* hooks */
     const [nowPlaying, setNowPlaying] = useState ([])
     const [genres, setGenres] = useState ([])
     const [movieByGenre, setMovieByGenre] = useState ([])
     const [topRated, setTopRated] = useState ([])
     const [popular, setPopular] = useState ([])
     const [upcoming, setUpcoming] = useState ([])
-    
+    const [numOfPages] = useState();
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchAPI = async () => {
@@ -27,10 +29,10 @@ export function Home() {
         }
 
         fetchAPI()
-    }, [])
+    }, [page])
 
     const handleGenreClick = async (genre_id) => {
-        setMovieByGenre(await fetchMovieByGenre(genre_id))
+        setMovieByGenre(await fetchMovieByGenre(genre_id,))
     }
     const movies = nowPlaying.slice(0, 10).map((item, index) => {
         return (
@@ -61,7 +63,7 @@ export function Home() {
         )
     })
 
-    const movieList = movieByGenre.slice(0, 4).map((item, index) => {
+    const movieList = movieByGenre.slice(0,4).map((item, index) => {
         return (
             <div className='col-md-3 col-sm-6' key={index}>
             <div className='card' >
@@ -80,6 +82,7 @@ export function Home() {
     })
 
 
+
     const topRatedList = topRated.slice(0, 4).map((item, index) => {
         return (
             <div className='col-md-3' key={index} >
@@ -93,13 +96,18 @@ export function Home() {
                 <p style={{fontWeight: 'bolder'}}> {item.title} </p>
                 <p>Rated: {item.rating}</p>
                 <ReactStars count={item.rating} size={20} color1={'#f4c10f'}> </ReactStars>
+
+                {numOfPages > 1 && (
+                <Pagination setPage={setPage} numOfPages={numOfPages} />
+            )}
             </div>
+
 
             </div>
         )
     })
 
-    const popularList = popular.slice(0, 4).map((item, index) => {
+    const popularList = popular.slice(0, 4).map((item, index, page) => {
         return (
             <div className='col-md-3' key={index} >
                 <div className='card'>
@@ -236,25 +244,7 @@ export function Home() {
 
       <hr className='mt-5' style={{borderTop: '1px solid #5a606d'}}></hr>
       
-      <div className='row mt-3 mb-5'>
-          <di className='col-md-10 col-sm-6' style={{color: '#5a606b'}}>
-              <h3>ABOUT APPLICATION</h3>
-              <p>React Application with Movie DB API created for Vega IT React.js job position.</p>
-              <p>React Hooks, React-bootstrap,Bootstrap,Axios,React-bootstrap-carousel,React-rating-starts-component,React-router-dom,React-player.</p>
-              <ul className='list-inline'>
-                  <li className='list-inline-item'>
-                      <a href='https://github.com/marko-gacic' style={{fontSize: 35,color: '#f4c10f'}}>
-                          <i className='fab fa-github'></i>
-                      </a>
-                  </li>
-                  <li className='list-inline-item'>
-                      <a href='https://www.linkedin.com/in/marko-gacic-359429195/' style={{fontSize: 35, color: '#f4c10f'}}>
-                          <i className='fab fa-linkedin ml-3'></i>
-                      </a>
-                  </li>
-              </ul>
-          </di>
-      </div>
+
 
       </div>
 

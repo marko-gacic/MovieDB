@@ -160,6 +160,8 @@ export const fetchCast = async (id) => {
             img: 'https://image.tmdb.org/t/p/w200' + c['profile_path'],
         }))
 
+        
+
         return modifiedData
 
     } catch(error) {}
@@ -171,7 +173,8 @@ export const fetchSimilarMovie = async (id) => {
         const {data} = await axios.get(`${movieUrl}/${id}/similar`, {
             params: {
                 api_key: apiKey,
-                language: 'en_US'
+                language: 'en_US',
+                page: 1
             }
             
         })
