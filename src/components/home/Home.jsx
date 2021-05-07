@@ -43,6 +43,7 @@ export function Home() {
                 <div className="carousel-center" >
                     <i className="far fa-play-circle" style={{fontSize: 90, color: '#E7E713'}} >
                     </i>
+                    
                 </div>
                 <div className='carousel-caption' style={{ textAlign: "center", fontSize: 45}}>
                     {item.title}

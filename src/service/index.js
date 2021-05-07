@@ -192,6 +192,7 @@ export const fetchSimilarMovie = async (id) => {
 
         
 
+        
     } catch(error) {}
 
 }
