@@ -1,38 +1,38 @@
-import React from "react";
-import Pagination from "@material-ui/lab/Pagination";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+// import React from "react";
 
-const darkTheme = createMuiTheme({
-	palette: {
-		type: "dark",
-	},
-});
+// const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+// 	const pageNumbers = [];
+// 	console.log(totalPosts, "totalpost");
+// 	console.log(postsPerPage, "postsPerPage");
+// 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+// 		pageNumbers.push(i);
+// 	}
+// 	console.log(pageNumbers, "pageNumbers");
+// 	return (
+// 		<nav>
+// 			<ul className="pagination">
+// 				{pageNumbers.map((number) => (
+// 					<li key={number} className="page-item">
+// 						<a onClick={() => paginate(number)} href="!#" className="page-link">
+// 							{number}
+// 						</a>
+// 					</li>
+// 				))}
+// 			</ul>
+// 		</nav>
+// 	);
+// };
 
-export default function CustomPagination({ setPage, numOfPages = 10 }) {
-	// Scroll to top when page changes
-	const handlePageChange = (page) => {
-		setPage(page);
-		window.scroll(0, 0);
-	};
+// export default Pagination;
 
-	return (
-		<div
-			style={{
-				width: "100%",
-				display: "flex",
-				justifyContent: "center",
-				marginTop: 10,
-			}}
-		>
-			<ThemeProvider theme={darkTheme}>
-				<Pagination
-					onChange={(e) => handlePageChange(e.target.textContent)}
-					count={numOfPages}
-					color="primary"
-					hideNextButton
-					hidePrevButton
-				/>
-			</ThemeProvider>
-		</div>
-	);
-}
+// export const filterItems = () => {
+// 	let selectedPage = 1;
+// 	let pageSize = 4;
+// 	let items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// 	let selectedPageFirstIndex = (selectedPage - 1) * pageSize;
+// 	return items.filter(
+// 		(item, index) =>
+// 			index >= selectedPageFirstIndex &&
+// 			index < selectedPageFirstIndex + pageSize
+// 	);
+// };

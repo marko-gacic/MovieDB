@@ -1,61 +1,72 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .list-inline-item .btn-outline-info {
-  color: #5a606b;
-  border: 1px solid #5a606b;
-  margin-bottom: 10px;
-  border-radius: 25px;
-  font-weight: 500;
+	color: #5a606b;
+	border: 1px solid #5a606b;
+	margin-bottom: 10px;
+	border-radius: 25px;
+	font-weight: 500;
 }
 
 .list-inline-item .btn-outline-info:hover {
-  color:aqua;
-  border-color: aqua;
-  background-color: transparent;
-  transition: all 0.6s ease-in-out;
+	color: aqua;
+	border-color: aqua;
+	background-color: transparent;
+	transition: all 0.6s ease-in-out;
 }
 
 .fa-linkedin:hover {
-  color:rgb(26, 142, 196);
-  border-color: rgb(26, 142, 196);
-  background-color: transparent;
-  transition: all 0.6s ease-in-out;
+	color: rgb(26, 142, 196);
+	border-color: rgb(26, 142, 196);
+	background-color: transparent;
+	transition: all 0.6s ease-in-out;
 }
 
 .fa-github:hover {
-  color: whitesmoke;
-  border-color: whitesmoke;
-  background-color: transparent;
-  transition: all 0.6s ease-in-out;
+	color: whitesmoke;
+	border-color: whitesmoke;
+	background-color: transparent;
+	transition: all 0.6s ease-in-out;
 }
 
 .fa-arrow-alt-circle-right {
-  color: #d8ae16;
-  font-size: 25px;
-  font-weight: bolder;
-  cursor: pointer;
+	color: #d8ae16;
+	font-size: 25px;
+	font-weight: bolder;
+	cursor: pointer;
 }
 
 .fa-arrow-alt-circle-right:hover {
-  color: aqua;
-  transition: all 0.6s ease-in-out;
+	color: aqua;
+	transition: all 0.6s ease-in-out;
 }
 
 .Footer {
-margin-top: 3px;
-margin-bottom: 5px;
-text-align: center;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	text-align: center;
+}
 
-  }
+.fa-arrow-alt-circle-left {
+	color: #d8ae16;
+	font-size: 25px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.fa-arrow-alt-circle-left:hover {
+	color: aqua;
+	transition: all 0.6s ease-in-out;
+}

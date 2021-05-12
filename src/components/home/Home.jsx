@@ -12,8 +12,6 @@ import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
-import TopRated from "../TopRated";
-
 export function Home() {
 	/* hooks */
 	const [nowPlaying, setNowPlaying] = useState([]);
@@ -25,15 +23,16 @@ export function Home() {
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(10);
+	const [selectedPage, setSelectedPage] = useState(1);
 
 	useEffect(() => {
 		const fetchAPI = async () => {
 			setNowPlaying(await fetchMovies());
-			setGenres(await fetchGenre());
+			setGenres(await fetchGenre(selectedPage));
 			setMovieByGenre(await fetchMovieByGenre(28));
-			setTopRated(await fetchTopratedMovie());
-			setPopular(await fetchPopularMovie());
-			setUpcoming(await fetchUpcomingMovie());
+			setTopRated(await fetchTopratedMovie(selectedPage));
+			setPopular(await fetchPopularMovie(selectedPage));
+			setUpcoming(await fetchUpcomingMovie(selectedPage));
 		};
 
 		fetchAPI();
@@ -43,6 +42,27 @@ export function Home() {
 	const handleGenreClick = async (genre_id) => {
 		setMovieByGenre(await fetchMovieByGenre(genre_id));
 	};
+
+	const handleTopRatedNextClick = async (next_page) => {
+		setTopRated(await fetchTopratedMovie(next_page));
+		setSelectedPage(next_page);
+	};
+
+	const handlePopularNextClick = async (next_page) => {
+		setPopular(await fetchPopularMovie(next_page));
+		setSelectedPage(next_page);
+	};
+
+	const handleUpcomingNextClick = async (next_page) => {
+		setUpcoming(await fetchUpcomingMovie(next_page));
+		setSelectedPage(next_page);
+	};
+
+	const handleGenresNextClick = async (next_page) => {
+		setGenres(await fetchGenre(next_page));
+		setSelectedPage(next_page);
+	};
+
 	const movies = nowPlaying.slice(0, 10).map((item, index) => {
 		return (
 			<div style={{ height: 500, width: "100%" }} key={index}>
@@ -68,7 +88,7 @@ export function Home() {
 			</div>
 		);
 	});
-
+	// << < 1, 2, 3 ... 10, 11, 12 > >> x % 3 === 0
 	const genreList = genres.map((item, index) => {
 		return (
 			<li className="list-inline-item" key={index}>
@@ -132,7 +152,7 @@ export function Home() {
 		);
 	});
 
-	const popularList = popular.slice(0, 4).map((item, index, page) => {
+	const popularList = popular.slice(0, 4).map((item, index) => {
 		return (
 			<div className="col-md-3" key={index}>
 				<div className="card">
@@ -204,9 +224,12 @@ export function Home() {
 
 			<div className="row mt-3">
 				<div className="col">
-					<div className="float-right">
+					<button
+						className="float-right"
+						onClick={() => handleGenresNextClick(selectedPage + 1)}
+					>
 						<i className="far fa-arrow-alt-circle-right"></i>
-					</div>
+					</button>
 				</div>
 			</div>
 
@@ -222,9 +245,18 @@ export function Home() {
 
 			<div className="row mt-3">
 				<div className="col">
-					<div className="float-right">
+					<button
+						className="float-left"
+						onClick={() => handleTopRatedNextClick(selectedPage - 1)}
+					>
+						<i className="far fa-arrow-alt-circle-left"></i>
+					</button>
+					<button
+						className="float-right"
+						onClick={() => handleTopRatedNextClick(selectedPage + 1)}
+					>
 						<i className="far fa-arrow-alt-circle-right"></i>
-					</div>
+					</button>
 				</div>
 			</div>
 
@@ -242,9 +274,18 @@ export function Home() {
 
 			<div className="row mt-3">
 				<div className="col">
-					<div className="float-right">
+					<button
+						className="float-left"
+						onClick={() => handlePopularNextClick(selectedPage - 1)}
+					>
+						<i className="far fa-arrow-alt-circle-left"></i>
+					</button>
+					<button
+						className="float-right"
+						onClick={() => handlePopularNextClick(selectedPage + 1)}
+					>
 						<i className="far fa-arrow-alt-circle-right"></i>
-					</div>
+					</button>
 				</div>
 			</div>
 
@@ -262,9 +303,18 @@ export function Home() {
 
 			<div className="row mt-3">
 				<div className="col">
-					<div className="float-right">
+					<button
+						className="float-left"
+						onClick={() => handleUpcomingNextClick(selectedPage - 1)}
+					>
+						<i className="far fa-arrow-alt-circle-left"></i>
+					</button>
+					<button
+						className="float-right"
+						onClick={() => handleUpcomingNextClick(selectedPage + 1)}
+					>
 						<i className="far fa-arrow-alt-circle-right"></i>
-					</div>
+					</button>
 				</div>
 			</div>
 

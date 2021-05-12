@@ -30,7 +30,6 @@ export const fetchMovies = async () => {
 			overview: m["overview"],
 			rating: m["vote_average"],
 		}));
-
 		return modifiedData;
 	} catch (error) {}
 };
@@ -54,13 +53,13 @@ export const fetchGenre = async () => {
 	} catch (error) {}
 };
 
-export const fetchMovieByGenre = async (genre_id) => {
+export const fetchMovieByGenre = async (genre_id, pageNumber) => {
 	try {
 		const { data } = await axios.get(moviesUrl, {
 			params: {
 				api_key: apiKey,
 				language: "en_US",
-				page: 1,
+				page: pageNumber,
 				with_genres: genre_id,
 			},
 		});
@@ -80,16 +79,18 @@ export const fetchMovieByGenre = async (genre_id) => {
 	} catch (error) {}
 };
 
-export const fetchTopratedMovie = async () => {
+export const fetchTopratedMovie = async (pageNumber) => {
+	console.log("usao u fetch");
+	console.log(pageNumber);
 	try {
 		const { data } = await axios.get(topratedUrl, {
 			params: {
 				api_key: apiKey,
 				language: "en_US",
-				page: 1,
+				page: pageNumber,
 			},
 		});
-
+		console.log(data);
 		const posterUrl = "https://image.tmdb.org/t/p/original/";
 		const modifiedData = data["results"].map((m) => ({
 			id: m["id"],
@@ -101,9 +102,27 @@ export const fetchTopratedMovie = async () => {
 			rating: m["vote_average"],
 		}));
 
+		// const objData = {
+		// 	data: modifiedData,
+		// 	totalPages: data["total_pages"],
+		// 	totalResults: data["total_results"],
+		// 	page: data["page"],
+		// };
+
+		// console.log(objData, "objData");
+
 		return modifiedData;
 	} catch (error) {}
 };
+
+// handlePageClick = (data) => {
+//     let selected = data.selected;
+//     let offset = Math.ceil(selected * this.props.perPage);
+
+//     this.setState({ offset: offset }, () => {
+//       this.fetchTopratedMovie();
+//     });
+//   };
 
 export const fetchMovieDetail = async (id) => {
 	try {
@@ -169,13 +188,13 @@ export const fetchSimilarMovie = async (id) => {
 	} catch (error) {}
 };
 
-export const fetchUpcomingMovie = async () => {
+export const fetchUpcomingMovie = async (pageNumber) => {
 	try {
 		const { data } = await axios.get(upcomingUrl, {
 			params: {
 				api_key: apiKey,
 				language: "en_US",
-				page: 1,
+				page: pageNumber,
 			},
 		});
 
@@ -194,13 +213,13 @@ export const fetchUpcomingMovie = async () => {
 	} catch (error) {}
 };
 
-export const fetchPopularMovie = async () => {
+export const fetchPopularMovie = async (pageNumber) => {
 	try {
 		const { data } = await axios.get(popularUrl, {
 			params: {
 				api_key: apiKey,
 				language: "en_US",
-				page: 1,
+				page: pageNumber,
 			},
 		});
 
