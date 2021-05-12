@@ -224,12 +224,12 @@ export function Home() {
 
 			<div className="row mt-3">
 				<div className="col">
-					<button
+					{/* <button
 						className="float-right"
 						onClick={() => handleGenresNextClick(selectedPage + 1)}
 					>
 						<i className="far fa-arrow-alt-circle-right"></i>
-					</button>
+					</button> */}
 				</div>
 			</div>
 
